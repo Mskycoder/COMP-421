@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c89a7c0f-09c0-4dd6-96a8-dd69cc9a1fd0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ca/mcgill/cs421/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ca/mcgill/cs421/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ca/mcgill/cs421/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ca/mcgill/cs421/Database.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -16,8 +18,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ca/mcgill/cs421/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="45" lean-forward="true" selection-start-line="25" selection-end-line="26" />
+            <state relative-caret-position="124">
+              <caret line="25" column="80" lean-forward="true" selection-start-line="25" selection-start-column="80" selection-end-line="25" selection-end-column="80" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -28,10 +30,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ca/mcgill/cs421/Database.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="74" column="26" selection-start-line="74" selection-end-line="75" />
+            <state relative-caret-position="434">
+              <caret line="174" column="63" selection-start-line="174" selection-start-column="63" selection-end-line="174" selection-end-column="63" />
               <folding>
-                <element signature="e#10232#10240#0" expanded="true" />
+                <element signature="e#9304#9335#0" expanded="true" />
+                <element signature="e#12806#12837#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -92,14 +95,14 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553128928003" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553195977674" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -145,18 +148,19 @@
       <updated>1552946378128</updated>
       <workItem from="1552946379676" duration="264000" />
       <workItem from="1552962872339" duration="2862000" />
-      <workItem from="1553053942703" duration="21123000" />
+      <workItem from="1553053942703" duration="21190000" />
+      <workItem from="1553190760049" duration="3707000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24249000" />
+    <option name="totallyTimeSpent" value="28023000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25767368" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26171243" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -194,17 +198,11 @@
     <entry file="file://$PROJECT_DIR$/COMP-421.iml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ca/mcgill/cs421/Repository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ca/mcgill/cs421/Repository.java" />
     <entry file="file://$PROJECT_DIR$/src/ca/mcgill/cs421/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="45" lean-forward="true" selection-start-line="25" selection-end-line="26" />
+        <state relative-caret-position="124">
+          <caret line="25" column="80" lean-forward="true" selection-start-line="25" selection-start-column="80" selection-end-line="25" selection-end-column="80" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -213,10 +211,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ca/mcgill/cs421/Database.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="74" column="26" selection-start-line="74" selection-end-line="75" />
+        <state relative-caret-position="434">
+          <caret line="174" column="63" selection-start-line="174" selection-start-column="63" selection-end-line="174" selection-end-column="63" />
           <folding>
-            <element signature="e#10232#10240#0" expanded="true" />
+            <element signature="e#9304#9335#0" expanded="true" />
+            <element signature="e#12806#12837#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -138,7 +138,8 @@ public class Database {
         String values ="(";
 
         for(int i =1; i <= numCol; i++){
-            System.out.println("Enter "+rsmd.getColumnName(i) +" ("+rsmd.getColumnTypeName(i)+ ")");
+//            System.out.println("Enter "+rsmd.getColumnName(i) +" ("+rsmd.getColumnClassName(i)+ ")");
+            printFormat(rsmd.getColumnName(i),rsmd.getColumnClassName(i));
             attribute += rsmd.getColumnName(i);
             attribute += ",";
             if(rsmd.getColumnTypeName(i).contains("char") || rsmd.getColumnTypeName(i).contains("date")){
@@ -158,6 +159,26 @@ public class Database {
         st.executeUpdate(query);
         rs.close();
         st.close();
+    }
+
+    public void printFormat(String columnName, String className ){
+        String format="";
+        if(columnName.contains("gender")){
+            format = "M or F";
+        } else if(className.contains("Integer")){
+            format = "integer";
+        } else if(className.contains("String")) {
+            format = "string";
+            if(columnName.contains("phone")){
+                format += " X-XXX-XXX-XXXX";
+            }else if(columnName.contains("address")){
+                format += " Ex. 123 St-Laurent St. Montreal QC H3R 1S3";
+            }
+        } else if(className.contains("Date")) {
+            format = "date YYYY-MM-DD";
+        }
+        System.out.println("Enter "+ columnName +" ("+ format+")");
+
     }
 
     /*----------------------UPDATE PRESCRIPTION STATUS--------------------------*/
@@ -281,6 +302,7 @@ public class Database {
     * did, drug_name, exp_date, dmid, price, quantity
     * */
 
+    @SuppressWarnings("Duplicates")
     public void displayDrugs() {
 
         String pchain ="";
@@ -294,7 +316,7 @@ public class Database {
             if (pchain == null) {
                 return;
             }
-
+            System.out.println("Select a pharmacy (#)");
             query = "SELECT * FROM pharmacies WHERE chain_name ='" + pchain + "'";
             pharmacy = getValue("pharm_name", query);
             if (pharmacy == null) {
@@ -332,6 +354,7 @@ public class Database {
 
         }catch(SQLException e){
             System.out.println(e.getMessage());
+            return;
         }
     }
 
@@ -393,9 +416,55 @@ public class Database {
      * Else, the list of prescriptions related to the specified patient will be displayed
      * */
 
-    //"SELECT a.pid,complaint,a.did,drug_name,exp_date, prescription_date FROM prescriptionofdrugs a,prescriptions b, drugs d "+
-    //       "WHERE a.pid= b.pid AND a.did= d.did AND patientid=" + pid;
 
+    @SuppressWarnings("Duplicates")
+    public void displayPrescriptions(){
+        Scanner sc = new Scanner(System.in);
+        int patientID;
+        try {
+            System.out.println("Please enter a patientID");
+            patientID = sc.nextInt();
+            if (!findQueryPatients(patientID)) {
+                return;
+            }
+
+            String query ="SELECT a.pid,complaint,a.did,drug_name,exp_date, prescription_date FROM prescriptionofdrugs a,prescriptions b, drugs d "+ "WHERE a.pid= b.pid AND a.did= d.did AND b.patientid=" + patientID;
+
+            int[] attribute_size = {8, 25, 8, 25, 12, 20};
+            Statement st = db.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            ResultSetMetaData rsmd = rs.getMetaData();
+
+            //Print attributes
+            int numCol = rsmd.getColumnCount();
+            System.out.print("|");
+            for (int i = 1; i <= numCol; i++) {
+                print(rsmd.getColumnLabel(i), attribute_size[i - 1]);
+                System.out.print("|");
+            }
+            System.out.println();
+
+            //Print tuples
+            while (rs.next()) {
+                System.out.print("|");
+                for (int i = 1; i <= numCol; i++) {
+                    print(rs.getString(i), attribute_size[i - 1]);
+                    System.out.print("|");
+                }
+                System.out.println();
+            }
+            System.out.println();
+            rs.close();
+            st.close();
+
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+            return;
+        }
+
+
+
+    }
     /*----------------------------UDPATE DRUG INVENTORY--------------------------------*/
 
     /*

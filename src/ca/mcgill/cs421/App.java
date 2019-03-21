@@ -37,6 +37,7 @@ public class App {
                     db.updatePrescriptionStatus();
                     break;
                 case "C":
+                    db.displayPrescriptions();
                     break;
                 case "D":
                     db.displayDrugs();
