@@ -138,8 +138,7 @@ public class Database {
         String values ="(";
 
         for(int i =1; i <= numCol; i++){
-//            System.out.println("Enter "+rsmd.getColumnName(i) +" ("+rsmd.getColumnClassName(i)+ ")");
-            printFormat(rsmd.getColumnName(i),rsmd.getColumnClassName(i));
+            printFormat(tableName,rsmd.getColumnName(i),rsmd.getColumnClassName(i));
             attribute += rsmd.getColumnName(i);
             attribute += ",";
             if(rsmd.getColumnTypeName(i).contains("char") || rsmd.getColumnTypeName(i).contains("date")){
@@ -161,12 +160,31 @@ public class Database {
         st.close();
     }
 
-    public void printFormat(String columnName, String className ){
+    public int suggestID(String tableName, String pk) throws SQLException{
+        int id=0;
+        Statement st = db.createStatement();
+        ResultSet rs = st.executeQuery("SELECT " + pk +" from "+tableName+" WHERE "+pk+ " >= ALL(SELECT "+pk+" FROM "+tableName+");");
+        if(rs.next()){
+            System.out.println(rs.getString(pk));
+            id = Integer.valueOf(rs.getString(pk));
+        }
+        st.close();
+        rs.close();
+        return id;
+    }
+
+    public void printFormat(String tableName, String columnName, String className ) throws SQLException{
         String format="";
         if(columnName.contains("gender")){
             format = "M or F";
         } else if(className.contains("Integer")){
             format = "integer";
+            if(columnName.contains("id")){
+                int id = suggestID(tableName,columnName);
+                if(id != 0){
+                    format += " (id suggested : " + (++id) + " )";
+                }
+            }
         } else if(className.contains("String")) {
             format = "string";
             if(columnName.contains("phone")){
@@ -219,20 +237,26 @@ public class Database {
             return;
         }
 
+        Statement st = db.createStatement();
+        ResultSet rs = st.executeQuery("SELECT * FROM preparesprescriptions WHERE pid = "+ pid );
+        if(rs.next()) {
+            System.out.println("Current status : " + rs.getString("preparation_status"));
+        }
         System.out.println("Choose a status (#)");
         System.out.println("1) Incomplete");
         System.out.println("2) In Progress");
         System.out.println("3) Finished");
+        System.out.println("4) Cancel update");
         input = sc.nextInt();
         switch(input){
             case 1: status = "'Incomplete'";break;
             case 2: status = "'In Progress'";break;
             case 3: status = "'Finished'";break;
+            case 4: return;
             default: System.out.println("Invalid input"); return;
         }
 
         String query = "UPDATE preparesprescriptions SET preparation_status = "+status+" WHERE pid = "+pid;
-        Statement st = db.createStatement();
         st.executeUpdate(query);
         st.close();
         System.out.println("Prescription preparation status is successfully updated");
@@ -251,18 +275,26 @@ public class Database {
             return;
         }
 
+        Statement st = db.createStatement();
+        ResultSet rs = st.executeQuery("SELECT * FROM deliversprescriptions WHERE pid = "+ pid );
+        if(rs.next()) {
+            System.out.println("Current status : " + rs.getString("delivery_status"));
+        }
+
         System.out.println("Choose a status (#)");
         System.out.println("1) Not Delivered");
         System.out.println("2) Delivered");
+        System.out.println("3) Cancel update");
+
         input = sc.nextInt();
         switch(input){
             case 1: status = "'Not Delivered'";break;
             case 2: status = "'Delivered'";break;
+            case 3: return;
             default: System.out.println("Invalid input"); return;
         }
 
         String query = "UPDATE deliversprescriptions SET delivery_status = "+status+" WHERE pid = "+pid;
-        Statement st = db.createStatement();
         st.executeUpdate(query);
         st.close();
         System.out.println("Prescription delivery status is successfully updated");
