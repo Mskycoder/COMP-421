@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c89a7c0f-09c0-4dd6-96a8-dd69cc9a1fd0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/ca/mcgill/cs421/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ca/mcgill/cs421/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ca/mcgill/cs421/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ca/mcgill/cs421/Database.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -14,11 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ca/mcgill/cs421/App.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="375">
-              <caret line="25" column="64" lean-forward="true" selection-start-line="25" selection-start-column="64" selection-end-line="25" selection-end-column="64" />
+              <caret line="25" column="45" lean-forward="true" selection-start-line="25" selection-end-line="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -26,13 +25,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ca/mcgill/cs421/Database.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2692">
-              <caret line="126" selection-start-line="126" selection-end-line="126" />
+            <state relative-caret-position="394">
+              <caret line="74" column="26" selection-start-line="74" selection-end-line="75" />
               <folding>
-                <element signature="e#9235#9243#0" expanded="true" />
+                <element signature="e#10232#10240#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -56,8 +55,8 @@
         <option value="$PROJECT_DIR$/src/ca/mcgill/cs421/DatabaseConnection.java" />
         <option value="$PROJECT_DIR$/src/ca/mcgill/cs421/Sql.java" />
         <option value="$PROJECT_DIR$/src/ca/mcgill/cs421/Repository.java" />
-        <option value="$PROJECT_DIR$/src/ca/mcgill/cs421/Database.java" />
         <option value="$PROJECT_DIR$/src/ca/mcgill/cs421/App.java" />
+        <option value="$PROJECT_DIR$/src/ca/mcgill/cs421/Database.java" />
       </list>
     </option>
   </component>
@@ -100,7 +99,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553126067959" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553128928003" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -146,12 +145,12 @@
       <updated>1552946378128</updated>
       <workItem from="1552946379676" duration="264000" />
       <workItem from="1552962872339" duration="2862000" />
-      <workItem from="1553053942703" duration="19016000" />
+      <workItem from="1553053942703" duration="21123000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22142000" />
+    <option name="totallyTimeSpent" value="24249000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -202,22 +201,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ca/mcgill/cs421/Database.java">
+    <entry file="file://$PROJECT_DIR$/src/ca/mcgill/cs421/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2692">
-          <caret line="126" selection-start-line="126" selection-end-line="126" />
+        <state relative-caret-position="375">
+          <caret line="25" column="45" lean-forward="true" selection-start-line="25" selection-end-line="26" />
           <folding>
-            <element signature="e#9235#9243#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ca/mcgill/cs421/App.java">
+    <entry file="file://$PROJECT_DIR$/src/ca/mcgill/cs421/Database.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="64" lean-forward="true" selection-start-line="25" selection-start-column="64" selection-end-line="25" selection-end-column="64" />
+        <state relative-caret-position="394">
+          <caret line="74" column="26" selection-start-line="74" selection-end-line="75" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#10232#10240#0" expanded="true" />
           </folding>
         </state>
       </provider>

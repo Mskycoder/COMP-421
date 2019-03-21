@@ -53,7 +53,14 @@ public class Database {
         Scanner sc = new Scanner(System.in);
         int patientID;
         int doctorID;
+        int drugID;
         try {
+            System.out.println("Please Enter the drugID");
+            drugID = sc.nextInt();
+            if (!findQueryDrugs(drugID)) {
+                System.out.println("Prescription can't be added");
+                return;
+            }
             System.out.println("Please Enter the patientID");
             patientID = sc.nextInt();
             if (!findQueryPatients(patientID)) {
@@ -65,6 +72,7 @@ public class Database {
                 addQuery("doctors");
             }
             addQuery("prescriptions");
+            addQuery("prescriptionofdrugs");
             System.out.println("Prescription is successfully added");
 
         }catch (SQLException e){
@@ -79,6 +87,21 @@ public class Database {
         ResultSet rs = st.executeQuery("SELECT * FROM patients WHERE patientid ="+patientID);
         if (!rs.next()){
             System.out.println("Patient NOT FOUND");
+            rs.close();
+            st.close();
+            return false;
+        }
+        rs.close();
+        st.close();
+        return true;
+    }
+
+    public boolean findQueryDrugs(int drugID) throws SQLException{
+
+        Statement st = db.createStatement();
+        ResultSet rs = st.executeQuery("SELECT * FROM drugs WHERE did ="+drugID);
+        if (!rs.next()){
+            System.out.println("DRUG NOT FOUND");
             rs.close();
             st.close();
             return false;
@@ -370,6 +393,9 @@ public class Database {
      * Else, the list of prescriptions related to the specified patient will be displayed
      * */
 
+    //"SELECT a.pid,complaint,a.did,drug_name,exp_date, prescription_date FROM prescriptionofdrugs a,prescriptions b, drugs d "+
+    //       "WHERE a.pid= b.pid AND a.did= d.did AND patientid=" + pid;
+
     /*----------------------------UDPATE DRUG INVENTORY--------------------------------*/
 
     /*
@@ -379,4 +405,8 @@ public class Database {
      * user will be notified and will be back on the main menu. Else, user can update the following
      * information: price, quantity, exp_date
      * */
+
+    //"UPDATE drugs SET exp_date WHERE did = " + did
+    //"UPDATE sellsdrugs SET quantity WHERE did = " + did
+    //"UPDATE sellsdrugs SET price WHERE did = " + did
 }
