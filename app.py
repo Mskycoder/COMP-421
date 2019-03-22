@@ -10,21 +10,21 @@ server = app.server
 
 # Standard Dash app code below
 app.layout = html.Div(className='container', children=[
-    dcc.Markdown(""),
-    Header('Sample App'),
-
-    Row([
-        Column(width=4, children=[
-            dcc.Dropdown(
-                id='dropdown',
-                options=[{'label': i, 'value': i} for i in ['LA', 'NYC', 'MTL']],
-                value='LA'
-            )
-        ]),
-        Column(width=8, children=[
-            dcc.Graph(id='graph')
-        ])
-    ])
+    dcc.Markdown("HELLO"),
+    # Header('Sample App'),
+    #
+    # Row([
+    #     Column(width=4, children=[
+    #         dcc.Dropdown(
+    #             id='dropdown',
+    #             options=[{'label': i, 'value': i} for i in ['LA', 'NYC', 'MTL']],
+    #             value='LA'
+    #         )
+    #     ]),
+    #     Column(width=8, children=[
+    #         dcc.Graph(id='graph')
+    #     ])
+    # ])
 ])
 
 
