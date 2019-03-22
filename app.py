@@ -5,15 +5,12 @@ import dash_html_components as html
 
 from components import Column, Header, Row
 
-app = dash.Dash(
-    __name__
-)
-
-server = app.server  # Expose the server variable for deployments
+app = dash.Dash(__name__)
+server = app.server
 
 # Standard Dash app code below
 app.layout = html.Div(className='container', children=[
-
+    dcc.Markdown(""),
     Header('Sample App'),
 
     Row([
