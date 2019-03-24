@@ -10,7 +10,7 @@ server = app.server
 
 # Standard Dash app code below
 app.layout = html.Div(className='container', children=[
-    dcc.Markdown("HELLO"),
+    Header("WALLAH")
     # Header('Sample App'),
     #
     # Row([
