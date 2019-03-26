@@ -12,24 +12,28 @@ public class Database {
 
     private Connection db;
 
+
     public Database() {}
 
     /*---------------------- CONNECTION METHODS --------------------------*/
 
-    public void connect(){
+    public Boolean connect(){
         System.out.println("Attempt to connect ....");
         try {
             db = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             System.out.println("Connection successfully opened");
+            return true;
         } catch (SQLException e) {
             System.out.println("Connection failed");
             System.out.println("Error : " +e.getMessage());
+            return false;
         }
     }
 
     public void disconnect(){
         System.out.println("Attempt to disconnect ....");
         try {
+
             db.close();
         } catch (SQLException e) {
             System.out.println("Disconnection failed");
@@ -54,6 +58,7 @@ public class Database {
         int patientID;
         int doctorID;
         int drugID;
+        int suggestedID;
         try {
             System.out.println("Please Enter the drugID");
             drugID = sc.nextInt();
@@ -64,15 +69,23 @@ public class Database {
             System.out.println("Please Enter the patientID");
             patientID = sc.nextInt();
             if (!findQueryPatients(patientID)) {
+                suggestedID = suggestID("patients","patientid");
+                System.out.println("Suggested patientid = "+ (++suggestedID));
                 addQuery("patients");
             }
             System.out.println("Please Enter the doctorID");
             doctorID = sc.nextInt();
             if (!findQueryDoctors(doctorID)) {
+                suggestedID = suggestID("doctors","doctorid");
+                System.out.println("Suggested doctorid = "+ (++suggestedID));
                 addQuery("doctors");
             }
+            suggestedID = suggestID("prescriptions","pid");
+            System.out.println("Suggested pid = "+ (++suggestedID));
             addQuery("prescriptions");
+
             addQuery("prescriptionofdrugs");
+
             System.out.println("Prescription is successfully added");
 
         }catch (SQLException e){
@@ -83,47 +96,46 @@ public class Database {
 
     public boolean findQueryPatients(int patientID) throws SQLException{
 
+        Boolean isFound =true;
         Statement st = db.createStatement();
         ResultSet rs = st.executeQuery("SELECT * FROM patients WHERE patientid ="+patientID);
         if (!rs.next()){
             System.out.println("Patient NOT FOUND");
-            rs.close();
-            st.close();
-            return false;
+            isFound = false;
         }
         rs.close();
         st.close();
-        return true;
+        return isFound;
     }
 
     public boolean findQueryDrugs(int drugID) throws SQLException{
 
+        Boolean isFound =true;
         Statement st = db.createStatement();
         ResultSet rs = st.executeQuery("SELECT * FROM drugs WHERE did ="+drugID);
         if (!rs.next()){
             System.out.println("DRUG NOT FOUND");
-            rs.close();
-            st.close();
-            return false;
+            isFound = false;
+
         }
         rs.close();
         st.close();
-        return true;
+        return isFound;
     }
 
     public boolean findQueryDoctors(int doctorID) throws SQLException{
 
+        Boolean isFound =true;
         Statement st = db.createStatement();
         ResultSet rs = st.executeQuery("SELECT * FROM doctors WHERE doctorid ="+doctorID);
         if (!rs.next()){
             System.out.println("Doctor NOT FOUND");
-            rs.close();
-            st.close();
-            return false;
+            isFound = false;
+
         }
         rs.close();
         st.close();
-        return true;
+        return isFound;
     }
 
     public void addQuery(String tableName) throws SQLException{
@@ -161,11 +173,10 @@ public class Database {
     }
 
     public int suggestID(String tableName, String pk) throws SQLException{
-        int id=0;
+        int id = 0;
         Statement st = db.createStatement();
         ResultSet rs = st.executeQuery("SELECT " + pk +" from "+tableName+" WHERE "+pk+ " >= ALL(SELECT "+pk+" FROM "+tableName+");");
         if(rs.next()){
-            System.out.println(rs.getString(pk));
             id = Integer.valueOf(rs.getString(pk));
         }
         st.close();
@@ -179,12 +190,6 @@ public class Database {
             format = "M or F";
         } else if(className.contains("Integer")){
             format = "integer";
-            if(columnName.contains("id")){
-                int id = suggestID(tableName,columnName);
-                if(id != 0){
-                    format += " (id suggested : " + (++id) + " )";
-                }
-            }
         } else if(className.contains("String")) {
             format = "string";
             if(columnName.contains("phone")){
@@ -195,7 +200,7 @@ public class Database {
         } else if(className.contains("Date")) {
             format = "date YYYY-MM-DD";
         }
-        System.out.println("Enter "+ columnName +" ("+ format+")");
+        System.out.println("Enter "+ columnName +"  Hint:("+ format+")");
 
     }
 
@@ -210,17 +215,16 @@ public class Database {
 
     public boolean findQueryPrescriptions(String tablename,int pid) throws SQLException{
 
+        Boolean isFound =true;
         Statement st = db.createStatement();
         ResultSet rs = st.executeQuery("SELECT * FROM "+tablename+ " WHERE pid ="+pid);
         if (!rs.next()){
             System.out.println("Prescription NOT FOUND");
-            rs.close();
-            st.close();
-            return false;
+            isFound = false;
         }
         rs.close();
         st.close();
-        return true;
+        return isFound;
     }
 
     @SuppressWarnings("Duplicates")
@@ -259,6 +263,7 @@ public class Database {
         String query = "UPDATE preparesprescriptions SET preparation_status = "+status+" WHERE pid = "+pid;
         st.executeUpdate(query);
         st.close();
+        rs.close();
         System.out.println("Prescription preparation status is successfully updated");
     }
     @SuppressWarnings("Duplicates")
@@ -282,13 +287,13 @@ public class Database {
         }
 
         System.out.println("Choose a status (#)");
-        System.out.println("1) Not Delivered");
+        System.out.println("1) Not delivered");
         System.out.println("2) Delivered");
         System.out.println("3) Cancel update");
 
         input = sc.nextInt();
         switch(input){
-            case 1: status = "'Not Delivered'";break;
+            case 1: status = "'Not delivered'";break;
             case 2: status = "'Delivered'";break;
             case 3: return;
             default: System.out.println("Invalid input"); return;
@@ -297,6 +302,7 @@ public class Database {
         String query = "UPDATE deliversprescriptions SET delivery_status = "+status+" WHERE pid = "+pid;
         st.executeUpdate(query);
         st.close();
+        rs.close();
         System.out.println("Prescription delivery status is successfully updated");
 
     }
@@ -304,7 +310,6 @@ public class Database {
     public void updatePrescriptionStatus() {
         Scanner sc = new Scanner(System.in);
         String input="";
-        int pid;
         try {
             System.out.println("Enter P for Preparation or D for Delivery?");
             input = sc.nextLine().toUpperCase();
@@ -321,7 +326,6 @@ public class Database {
             }
         } catch (SQLException e){
             System.out.println(e.getMessage());
-
         }
     }
 
@@ -381,8 +385,8 @@ public class Database {
                 System.out.println();
             }
             System.out.println();
-            rs.close();
             st.close();
+            rs.close();
 
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -393,7 +397,6 @@ public class Database {
     public String getValue(String colName,String query)  throws SQLException{
         Scanner sc = new Scanner(System.in);
         int input;
-        String value="";
         List<String> list = new ArrayList<String>();
 
         Statement st = db.createStatement();
@@ -407,15 +410,14 @@ public class Database {
             i++;
 
         }
-        input = sc.nextInt();
-        if(input > list.size()){
-            System.out.println("Invalid input");
-            return null;
-        }
-
         rs.close();
         st.close();
 
+        input = sc.nextInt();
+        if(input > list.size() || input == 0){
+            System.out.println("Invalid input");
+            return null;
+        }
         return list.get(input-1);
     }
 
@@ -494,9 +496,8 @@ public class Database {
             return;
         }
 
-
-
     }
+
     /*----------------------------UDPATE DRUG INVENTORY--------------------------------*/
 
     /*
@@ -507,7 +508,94 @@ public class Database {
      * information: price, quantity, exp_date
      * */
 
-    //"UPDATE drugs SET exp_date WHERE did = " + did
-    //"UPDATE sellsdrugs SET quantity WHERE did = " + did
-    //"UPDATE sellsdrugs SET price WHERE did = " + did
+    @SuppressWarnings("Duplicates")
+    public void updateDrugInventory(){
+        Scanner sc = new Scanner(System.in);
+        int drugID = 0;
+        String pchain;
+        String pharmacy;
+
+        try{
+            System.out.println("Select a pharmacy chain (#)");
+            String query = "SELECT * FROM pharmacychains";
+            pchain = getValue("chain_name", query);
+            if (pchain == null) {
+                return;
+            }
+            System.out.println("Select a pharmacy (#)");
+            query = "SELECT * FROM pharmacies WHERE chain_name ='" + pchain + "'";
+            pharmacy = getValue("pharm_name", query);
+            if (pharmacy == null) {
+                return;
+            }
+
+            System.out.println("Select a drug id (#)");
+            query = "SELECT * FROM drugs NATURAL JOIN sellsdrugs WHERE chain_name ='" + pchain + "' AND pharm_name ='" + pharmacy + "'" ;
+            String option = getValue("did", query);
+            if(option != null){
+                drugID = Integer.valueOf(option);
+            } else{
+                return;
+            }
+
+            Statement st = db.createStatement();
+            ResultSet rs = null;
+            while(true){
+                String q;
+                System.out.println("1) Update exp_date");
+                System.out.println("2) Update quantity");
+                System.out.println("3) Update price");
+                System.out.println("4) End update");
+                int choice = sc.nextInt();
+                sc.nextLine();
+                switch(choice){
+                    case 1:
+                        q = "SELECT * FROM drugs WHERE did = "+ drugID;
+                        rs = st.executeQuery(q);
+                        if(rs.next()){
+                            System.out.println("Current exp_date :" + rs.getString("exp_date"));
+                        }
+                        System.out.println("Enter a new exp_date YYYY-MM-DD ");
+                        String date = sc.nextLine();
+                        q = "UPDATE drugs SET exp_date = '"+date+"' WHERE did = " + drugID;
+                        st.executeUpdate(q);
+                        System.out.println("Exp_date successfully updated");
+                        break;
+                    case 2:
+                        q = "SELECT * FROM sellsdrugs WHERE did = " + drugID + " AND chain_name ='" + pchain + "' AND pharm_name ='" + pharmacy + "'";
+                        rs = st.executeQuery(q);
+                        if(rs.next()){
+                            System.out.println("Current quantity :" + rs.getString("quantity"));
+                        }
+                        System.out.println("Current quantity :");
+                        System.out.println("Enter a new quantity (integer)");
+                        int quantity = Integer.valueOf(sc.nextLine());
+                        q = "UPDATE sellsdrugs SET quantity = "+quantity+" WHERE did = " + drugID + " AND chain_name ='" + pchain + "' AND pharm_name ='" + pharmacy + "'";
+                        st.executeUpdate(q);
+                        System.out.println("Quantity successfully updated");
+                        break;
+                    case 3:
+                        q = "SELECT * FROM sellsdrugs WHERE did = " + drugID + " AND chain_name ='" + pchain + "' AND pharm_name ='" + pharmacy + "'";
+                        rs = st.executeQuery(q);
+                        if(rs.next()){
+                            System.out.println("Current price :" + rs.getString("price"));
+                        }
+                        System.out.println("Current price :");
+                        System.out.println("Enter a new price (integer)");
+                        int price = Integer.valueOf(sc.nextLine());
+                        q = "UPDATE sellsdrugs SET price = "+price+" WHERE did = " + drugID + " AND chain_name ='" + pchain + "' AND pharm_name ='" + pharmacy + "'";
+                        st.executeUpdate(q);
+                        System.out.println("Price successfully updated");
+                        break;
+                    case 4:
+                        rs.close();
+                        st.close();
+                        return;
+                    default: System.out.println("Invalid input"); break;
+                }
+            }
+        } catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
 }
