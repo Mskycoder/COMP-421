@@ -1,0 +1,17 @@
+patientid,gender,phone,name,address,age
+1,M,1-514-651-5366,Mathieu Tremblay,6817 43 Av Montreal QC H1T 2R9,69
+2,F,1-514-751-9213,Michelle Guerra,7503 Rue St Denis Montreal QC H2R 2E7,54
+3,M,1-514-629-1438,Oscar Suarez,251 Av Percival Montreal Ouest QC H4X 1T8,43
+4,F,1-514-261-8022,Chris Summers,7766 George Street Lasalle QC H8P 1E1,39
+5,M,1-514-817-2579,Mason Molina,5745 17 Av Montreal QC H1X 2R7,57
+6,F,1-514-996-0588,Chantale Knapp,11727 Rue Notre Dame E Montreal QC H1B 2X8,39
+7,M,1-514-343-8527,Tanek Christensen,5930 Rue Hurteau Montreal QC H4E 2Y2,20
+8,F,1-514-436-8483,Ella Bond,717 Charron Street Lasalle QC H8P 3T8,46
+9,M,1-514-677-7667,Hubert Nadeau,2630 St Germain Street Montreal QC H1W 2V3,66
+10,F,1-514-965-1229,Serina Merrill,16 Kenaston Av Mont Royal QC H3R 1L8,37
+11,M,1-514-677-3765,Lance Townsend,12225 Av de Saint-Castin Montréal QC H3M 2L6,44
+12,F,1-514-872-3513,Kim Salinas,391 Rue de la Congrégation Montréal QC H3K 2H8,52
+13,M,1-514-631-2984,John Smith,1940 Jolicoeur Street Montreal QC H4E 4M2,66
+14,F,1-514-567-7323,Alexandra Chan,4430 Ste Catherine Street O Westmount QC H3Z 3E4,47
+15,M,1-514-305-0667,Gregoire Laplante,459 Rue St Paul E Montreal QC H2Y 1H5,25
+16,M,1-450-123-1234,Patrick White,1234 Sherbrooke W. Montreal QC H3R 2P4,32

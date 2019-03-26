@@ -1,4 +1,17 @@
-/*
- * Fill this CSS file in with your own styles
- * or create a new file in this folder
- */
+
+ .pretty_container {
+   border-radius: 5px;
+   background-color: #F9F9F9;
+   margin: 10px;
+   padding: 15px;
+   position: relative;
+ }
+
+ .bare_container {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
+
+.row {
+  display: flex
+}
