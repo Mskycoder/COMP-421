@@ -1,0 +1,30 @@
+pharm_name,chain_name,sid,start_shift,end_shift,work_date
+Arthur Nguyen inc.,Pharmaprix,1,09:00:00,17:00:00,2018-05-11
+Arthur Nguyen inc.,Pharmaprix,3,09:00:00,17:00:00,2018-05-13
+Sarah Legault inc.,Jean Coutu,5,10:30:00,15:30:00,2018-09-17
+Sarah Legault inc.,Jean Coutu,1,10:30:00,15:30:00,2018-09-11
+Sarah Legault inc.,Jean Coutu,2,10:30:00,15:30:00,2018-10-08
+Sarah Legault inc.,Jean Coutu,3,10:30:00,15:30:00,2018-11-17
+Sarah Legault inc.,Jean Coutu,4,10:30:00,15:30:00,2018-12-15
+Sarah Legault inc.,Jean Coutu,6,07:00:00,19:00:00,2018-04-19
+Lara Li inc.,Uniprix,8,09:00:00,17:00:00,2018-03-14
+Lara Li inc.,Uniprix,7,09:00:00,17:00:00,2018-03-27
+Lara Li inc.,Uniprix,6,09:00:00,17:00:00,2018-04-18
+Lara Li inc.,Uniprix,13,09:00:00,17:00:00,2018-06-08
+Lara Li inc.,Uniprix,4,09:00:00,17:00:00,2018-05-03
+Lara Li inc.,Uniprix,3,10:30:00,20:00:00,2018-03-18
+Chantale Blais inc.,Familiprix,10,09:00:00,15:30:00,2018-04-18
+Chantale Blais inc.,Familiprix,9,09:00:00,15:30:00,2018-03-16
+Chantale Blais inc.,Familiprix,11,09:00:00,15:30:00,2018-05-17
+Chantale Blais inc.,Familiprix,7,09:00:00,15:30:00,2018-05-18
+Chantale Blais inc.,Familiprix,6,09:00:00,15:30:00,2018-05-19
+Chantale Blais inc.,Familiprix,12,09:00:00,15:30:00,2018-05-22
+Scott Simon inc.,Rexall,14,09:00:00,18:00:00,2018-04-18
+Scott Simon inc.,Rexall,9,09:00:00,19:00:00,2018-03-11
+Scott Simon inc.,Rexall,1,09:00:00,18:00:00,2018-05-11
+Scott Simon inc.,Rexall,2,09:00:00,18:00:00,2018-04-20
+Arthur Nguyen inc.,Pharmaprix,15,07:00:00,19:00:00,2018-07-19
+Arthur Nguyen inc.,Pharmaprix,9,07:00:00,19:00:00,2018-07-05
+Arthur Nguyen inc.,Pharmaprix,13,07:00:00,19:00:00,2018-07-13
+Arthur Nguyen inc.,Pharmaprix,12,07:00:00,19:00:00,2018-06-09
+Arthur Nguyen inc.,Pharmaprix,11,07:00:00,19:00:00,2018-07-29
